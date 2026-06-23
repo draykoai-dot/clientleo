@@ -4,37 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>California Ice Cream — Ice Cream & Mexican Candy Shop in Lakeside, CA</title>
-  <meta name="description" content="California Ice Cream in Lakeside, CA — your go-to shop for wholesale ice cream, paletas, and authentic Mexican candy. Open 7 days a week, 10am–6pm. Bulk orders for ice cream trucks, shops & events welcome.">
-  <meta name="keywords" content="California Ice Cream, ice cream Lakeside CA, paletas Lakeside, Mexican candy San Diego, bulk ice cream orders, ice cream truck supplier, raspado Lakeside, mangonada San Diego">
+  <meta name="description" content="California Ice Cream — 9666 Winter Gdns Blvd, Lakeside, CA 92040. Wholesale ice cream, paletas & authentic Mexican candy. Call (619) 390-1125. Open 7 days a week, 10am–6pm. Bulk orders for ice cream trucks, shops & events welcome.">
+  <meta name="keywords" content="California Ice Cream, ice cream Lakeside CA, paletas Lakeside, Mexican candy San Diego, bulk ice cream orders, ice cream truck supplier, raspado Lakeside, mangonada San Diego, californiaicecreams.com, ice cream shop Lakeside, ice cream near me Lakeside CA, wholesale ice cream San Diego">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://draykoai-dot.github.io/clientleo/">
+  <link rel="canonical" href="https://californiaicecreams.com/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="California Ice Cream — Lakeside, CA">
   <meta property="og:description" content="Ice cream, paletas & the best Mexican candy in Lakeside, CA. Open 7 days a week. Bulk orders welcome for ice cream trucks and shops.">
-  <meta property="og:url" content="https://draykoai-dot.github.io/clientleo/">
-  <meta property="og:image" content="ice cream logo.jpeg">
+  <meta property="og:url" content="https://californiaicecreams.com/">
+  <meta property="og:image" content="https://californiaicecreams.com/ice cream logo.jpeg">
   <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="California Ice Cream">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="California Ice Cream — Lakeside, CA">
+  <meta name="twitter:description" content="Ice cream, paletas & the best Mexican candy in Lakeside, CA. Open 7 days a week. Bulk orders welcome.">
+  <meta name="twitter:image" content="https://californiaicecreams.com/ice cream logo.jpeg">
 
   <!-- Local Business Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "IceCreamShop",
+    "@id": "https://californiaicecreams.com/",
     "name": "California Ice Cream",
-    "description": "Wholesale ice cream, paletas, and authentic Mexican candy in Lakeside, California. Open to the public 7 days a week.",
-    "url": "https://draykoai-dot.github.io/clientleo/",
-    "image": "ice cream logo.jpeg",
+    "description": "Wholesale ice cream, paletas, and authentic Mexican candy in Lakeside, California. Open to the public 7 days a week, 10am to 6pm. Bulk orders for ice cream trucks, shops, and events welcome.",
+    "url": "https://californiaicecreams.com/",
+    "telephone": "+16193901125",
+    "image": "https://californiaicecreams.com/ice cream logo.jpeg",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "9666 Winter Gdns Blvd",
       "addressLocality": "Lakeside",
       "addressRegion": "CA",
+      "postalCode": "92040",
       "addressCountry": "US"
     },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=9666+Winter+Gdns+Blvd+Lakeside+CA+92040",
     "openingHours": "Mo-Su 10:00-18:00",
-    "servesCuisine": "Ice Cream, Mexican Candy",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "10:00",
+      "closes": "18:00"
+    },
+    "servesCuisine": ["Ice Cream", "Paletas", "Mexican Candy"],
     "priceRange": "$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Cash, Credit Card",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.4",
@@ -685,7 +705,7 @@
           TikTok
         </a>
 
-        <a href="https://www.google.com/maps/search/California+Ice+Cream+Lakeside+CA" target="_blank" rel="noopener"
+        <a href="https://www.google.com/maps/search/?api=1&query=9666+Winter+Gdns+Blvd+Lakeside+CA+92040" target="_blank" rel="noopener"
            class="btn-social"
            style="background:#4285F4; box-shadow:0 6px 20px rgba(66,133,244,0.35);"
            aria-label="Google Maps">
@@ -724,32 +744,37 @@
 
     <form id="contact-form" class="space-y-5 reveal" onsubmit="handleSubmit(event)" novalidate>
 
+      <input type="hidden" name="access_key" value="c632613b-6f53-441f-9823-937d1412eb66">
+      <input type="hidden" name="subject" value="New Bulk Order Request — California Ice Cream">
+      <input type="hidden" name="from_name" value="California Ice Cream Website">
+      <input type="checkbox" name="botcheck" style="display:none;">
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Your Name *</label>
-          <input type="text" required placeholder="John Doe" class="field">
+          <input type="text" name="name" required placeholder="John Doe" class="field">
         </div>
         <div>
           <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Business Name</label>
-          <input type="text" placeholder="Your Shop / Truck Name" class="field">
+          <input type="text" name="business_name" placeholder="Your Shop / Truck Name" class="field">
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Email *</label>
-          <input type="email" required placeholder="you@example.com" class="field">
+          <input type="email" name="email" required placeholder="you@example.com" class="field">
         </div>
         <div>
           <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Phone Number</label>
-          <input type="tel" placeholder="(619) 555-0000" class="field">
+          <input type="tel" name="phone" placeholder="(619) 555-0000" class="field">
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Order Type *</label>
-          <select required class="field" style="appearance:none; cursor:pointer;">
+          <select name="order_type" required class="field" style="appearance:none; cursor:pointer;">
             <option value="" disabled selected>Select one…</option>
             <option>Ice Cream / Paletas</option>
             <option>Mexican Candy</option>
@@ -760,13 +785,13 @@
         </div>
         <div>
           <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Estimated Quantity</label>
-          <input type="text" placeholder="e.g. 200 paletas, 10 cases…" class="field">
+          <input type="text" name="quantity" placeholder="e.g. 200 paletas, 10 cases…" class="field">
         </div>
       </div>
 
       <div>
         <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Message / Details *</label>
-        <textarea required rows="5" placeholder="Tell us what you need, when you need it, and any special requests…"
+        <textarea name="message" required rows="5" placeholder="Tell us what you need, when you need it, and any special requests…"
                   class="field resize-none"></textarea>
       </div>
 
@@ -812,15 +837,17 @@
       <!-- Contact info -->
       <div class="md:text-right">
         <div class="font-display font-600 text-sm uppercase tracking-widest mb-4" style="color:rgba(255,255,255,0.35);">Find Us</div>
-        <div class="font-body text-sm space-y-1" style="color:rgba(255,255,255,0.5);">
-          <div>📍 Lakeside, California</div>
-          <div>🕐 Open Daily</div>
+        <address class="font-body text-sm space-y-1 not-italic" style="color:rgba(255,255,255,0.5);">
+          <div>📍 9666 Winter Gdns Blvd</div>
+          <div style="padding-left:1.4em;">Lakeside, CA 92040</div>
+          <div class="mt-1">📞 <a href="tel:+16193901125" style="color:rgba(255,255,255,0.5);">(619) 390-1125</a></div>
+          <div>🕐 Open Daily · 10am – 6pm</div>
           <div class="mt-3">
             <a href="#contact" class="font-display font-600 text-sm" style="color:var(--coral);">
               Request a Bulk Order →
             </a>
           </div>
-        </div>
+        </address>
       </div>
 
     </div>
@@ -871,19 +898,47 @@ function toggleMenu() {
   els.forEach(function(el) { io.observe(el); });
 })();
 
-/* ── Form submit ── */
-function handleSubmit(e) {
+/* ── Form submit → Web3Forms ── */
+async function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
-  btn.textContent = '✓ Sent! Leo will be in touch soon.';
-  btn.classList.add('success');
+  const form = e.target;
+
+  if (!form.checkValidity()) {
+    form.querySelectorAll('[required]').forEach(function(el) {
+      if (!el.value.trim()) el.style.borderColor = 'var(--coral)';
+    });
+    return;
+  }
+
+  btn.textContent = 'Sending…';
   btn.disabled = true;
-  setTimeout(function() {
-    btn.textContent = 'Send Bulk Order Request 🍦';
-    btn.classList.remove('success');
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(form)
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      btn.textContent = '✓ Sent! Leo will be in touch soon.';
+      btn.classList.add('success');
+      form.reset();
+      form.querySelectorAll('.field').forEach(function(el) { el.style.borderColor = ''; });
+      setTimeout(function() {
+        btn.textContent = 'Send Bulk Order Request 🍦';
+        btn.classList.remove('success');
+        btn.disabled = false;
+      }, 5000);
+    } else {
+      btn.textContent = 'Something went wrong — please try again.';
+      btn.disabled = false;
+    }
+  } catch (err) {
+    btn.textContent = 'Something went wrong — please try again.';
     btn.disabled = false;
-    e.target.reset();
-  }, 5000);
+  }
 }
 
 /* ════════════════════════════════════════════════════════
