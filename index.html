@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Ice Cream — Lakeside, CA</title>
+  <meta name="description" content="Ice cream, paletas & the best Mexican candy in Lakeside, California. Bulk orders welcome for ice cream trucks and shops.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Fredoka"', 'sans-serif'],
+            body: ['"Nunito"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --coral:    #FF4566;
+      --teal:     #00C9C8;
+      --sun:      #FFD12F;
+      --lime:     #ADEC32;
+      --cream:    #FFFBF0;
+      --plum:     #1E0040;
+      --rose:     #fb7185;
+      --fuchsia:  #e879f9;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--plum);
+      overflow-x: hidden;
+    }
+
+    /* ─── Hero canvas ─── */
+    #gradient-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* ─── Noise texture overlay ─── */
+    .noise {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ─── Nav ─── */
+    #navbar {
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    #navbar.stuck {
+      background: rgba(255,251,240,0.93);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 2px 20px rgba(30,0,64,0.07);
+    }
+
+    /* ─── Marquee ─── */
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── Product cards ─── */
+    .product-card {
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 24px 56px rgba(30,0,64,0.13), 0 4px 12px rgba(30,0,64,0.06);
+    }
+    .product-card:active { transform: translateY(-4px) scale(0.99); }
+
+    /* ─── Review card ─── */
+    .review-card {
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .review-card:hover { transform: translateY(-5px); }
+
+    /* ─── Buttons ─── */
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--coral) 0%, #FF6B35 100%);
+      box-shadow: 0 6px 28px rgba(255,69,102,0.38), 0 2px 8px rgba(255,69,102,0.15);
+      color: white;
+      border-radius: 9999px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.25s ease,
+                  opacity 0.2s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(255,69,102,0.44), 0 4px 14px rgba(255,69,102,0.2);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-primary:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+
+    .btn-ghost {
+      display: inline-block;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.75);
+      color: var(--plum);
+      border-radius: 9999px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+                  background 0.2s ease;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.85); transform: translateY(-3px); }
+    .btn-ghost:active { transform: scale(0.97); }
+    .btn-ghost:focus-visible { outline: 3px solid var(--plum); outline-offset: 3px; }
+
+    .btn-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: white;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
+    }
+    .btn-social:hover { transform: translateY(-3px); opacity: 0.92; }
+    .btn-social:active { transform: scale(0.96); }
+    .btn-social:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+
+    /* ─── Form inputs ─── */
+    .field {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 2px solid rgba(30,0,64,0.1);
+      background: white;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      color: var(--plum);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field:focus {
+      border-color: var(--coral);
+      box-shadow: 0 0 0 4px rgba(255,69,102,0.1);
+    }
+    .field::placeholder { color: rgba(30,0,64,0.35); }
+
+    /* ─── Stars ─── */
+    .stars { color: var(--sun); letter-spacing: 2px; }
+
+    /* ─── Fade-in on scroll ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Floating emoji ─── */
+    @keyframes float-a {
+      0%, 100% { transform: translateY(0px) rotate(-4deg); }
+      50%       { transform: translateY(-16px) rotate(4deg); }
+    }
+    @keyframes float-b {
+      0%, 100% { transform: translateY(-8px) rotate(3deg); }
+      50%       { transform: translateY(8px) rotate(-3deg); }
+    }
+    .float-a { animation: float-a 5s ease-in-out infinite; }
+    .float-b { animation: float-b 6s ease-in-out infinite; }
+
+    /* ─── Section label chip ─── */
+    .chip {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ─── Dot separator ─── */
+    .dot { width: 6px; height: 6px; border-radius: 9999px; display: inline-block; flex-shrink: 0; }
+
+    /* ─── Mobile menu ─── */
+    #mobile-menu {
+      display: none;
+    }
+    #mobile-menu.open {
+      display: flex;
+    }
+
+    /* ─── Submit success ─── */
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--coral) 0%, #FF6B35 100%);
+      box-shadow: 0 6px 28px rgba(255,69,102,0.36), 0 2px 8px rgba(255,69,102,0.14);
+      color: white;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.25s ease;
+    }
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(255,69,102,0.42), 0 4px 14px rgba(255,69,102,0.18);
+    }
+    .btn-submit:active { transform: scale(0.97); }
+    .btn-submit:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+    .btn-submit:disabled { cursor: not-allowed; opacity: 0.8; transform: none; }
+    .btn-submit.success {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      box-shadow: 0 6px 28px rgba(22,163,74,0.36);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║  NAVIGATION                                          ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <a href="#" class="font-display font-700 text-2xl" style="color:var(--plum); letter-spacing:-0.01em;">
+      <span style="color:var(--coral);">California</span> Ice Cream
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#bestsellers" class="font-body font-600 text-sm hover:opacity-70 transition-opacity" style="color:var(--plum);">Our Favorites</a>
+      <a href="#reviews"     class="font-body font-600 text-sm hover:opacity-70 transition-opacity" style="color:var(--plum);">Reviews</a>
+      <a href="#contact"     class="font-body font-600 text-sm hover:opacity-70 transition-opacity" style="color:var(--plum);">Bulk Orders</a>
+      <a href="#contact" class="btn-primary px-6 py-2.5 text-sm">Contact Leo</a>
+    </div>
+
+    <button id="hamburger" class="md:hidden p-2 rounded-lg" onclick="toggleMenu()"
+            style="color:var(--plum);" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="3" y1="6"  x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="flex-col gap-5 pt-5 pb-2 px-2 md:hidden">
+    <a href="#bestsellers" onclick="toggleMenu()" class="font-body font-600 text-base" style="color:var(--plum);">Our Favorites</a>
+    <a href="#reviews"     onclick="toggleMenu()" class="font-body font-600 text-base" style="color:var(--plum);">Reviews</a>
+    <a href="#contact"     onclick="toggleMenu()" class="font-body font-600 text-base" style="color:var(--plum);">Bulk Orders</a>
+    <a href="#contact"     onclick="toggleMenu()" class="btn-primary px-6 py-2.5 text-sm self-start">Contact Leo</a>
+  </div>
+</nav>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║  HERO SECTION                                        ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+
+  <!-- Three.js Gradient Wave -->
+  <canvas id="gradient-canvas"></canvas>
+
+  <!-- Noise texture grain -->
+  <div class="noise"></div>
+
+  <!-- Floating decorative emojis -->
+  <span class="absolute top-[18%] left-[8%]  text-5xl float-a hidden lg:block select-none pointer-events-none z-10" aria-hidden="true">🍭</span>
+  <span class="absolute top-[28%] right-[7%] text-6xl float-b hidden lg:block select-none pointer-events-none z-10" aria-hidden="true">🍦</span>
+  <span class="absolute bottom-[22%] left-[6%] text-4xl float-b hidden lg:block select-none pointer-events-none z-10" aria-hidden="true">🌶️</span>
+  <span class="absolute bottom-[18%] right-[9%] text-5xl float-a hidden lg:block select-none pointer-events-none z-10" aria-hidden="true">🥭</span>
+
+  <!-- Hero content -->
+  <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 font-body font-600 text-sm"
+         style="background:rgba(255,255,255,0.55); backdrop-filter:blur(14px); border:1.5px solid rgba(255,255,255,0.75); color:var(--plum);">
+      📍 Lakeside, California
+    </div>
+
+    <h1 class="font-display font-700 leading-[0.88] mb-7"
+        style="font-size:clamp(3.8rem, 10.5vw, 8.5rem); color:var(--plum); letter-spacing:-0.03em; mix-blend-mode:multiply;">
+      California<br>
+      <span style="color:var(--coral);">Ice Cream</span>
+    </h1>
+
+    <p class="font-body font-400 mb-10 max-w-lg mx-auto"
+       style="font-size:clamp(1rem,2.5vw,1.2rem); line-height:1.75; color:var(--plum); opacity:0.78;">
+      Ice cream, paletas &amp; the most authentic Mexican candy in Lakeside — all under one roof. Come taste the magic! 🍬
+    </p>
+
+    <div class="flex items-center justify-center gap-4 flex-wrap">
+      <a href="#bestsellers" class="btn-primary px-9 py-4 text-base">See Our Menu</a>
+      <a href="#contact"     class="btn-ghost  px-9 py-4 text-base">Bulk Orders</a>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1"
+       style="color:var(--plum); opacity:0.45; animation:float-a 3s ease-in-out infinite;">
+    <span class="font-body text-xs font-600 uppercase tracking-widest">Scroll</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║  MOVING BRAND BAR — logo images only, no text        ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<div class="overflow-hidden"
+     style="background:#fff; border-top:2px solid rgba(30,0,64,0.07); border-bottom:2px solid rgba(30,0,64,0.07); padding:20px 0;">
+  <div class="marquee-track" style="gap:80px;">
+
+    <!-- ══ SET 1 ══ -->
+    <img src="Doritos_PNG.png"   alt="Doritos"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Lays_Logo.png"      alt="Lay's"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="EDY's_PNG.png"     alt="EDY's"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Cheetos_Logo.png"  alt="Cheetos"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Popsicle_Logo.png" alt="Popsicle"  style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Takis_Logo.png"    alt="Takis"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+
+    <!-- ══ SET 2 — exact duplicate for seamless loop ══ -->
+    <img src="Doritos_PNG.png"   alt="Doritos"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Lays_Logo.png"     alt="Lay's"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="EDY's_PNG.png"     alt="EDY's"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Cheetos_Logo.png"  alt="Cheetos"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Popsicle_Logo.png" alt="Popsicle"  style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Takis_Logo.png"    alt="Takis"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║  BEST SELLERS                                        ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<section id="bestsellers" class="py-28 px-6"
+         style="background: radial-gradient(ellipse at 15% 50%, rgba(255,69,102,0.05) 0%, transparent 55%),
+                            radial-gradient(ellipse at 85% 40%, rgba(0,201,200,0.05) 0%, transparent 55%),
+                            var(--cream);">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <span class="chip mb-4" style="background:rgba(255,69,102,0.1); color:var(--coral);">
+        Customer Favorites
+      </span>
+      <h2 class="font-display font-700 mt-4"
+          style="font-size:clamp(2.4rem,5vw,3.8rem); color:var(--plum); letter-spacing:-0.03em; line-height:1.05;">
+        Our Best Sellers
+      </h2>
+      <p class="font-body font-400 mt-4 max-w-md mx-auto opacity-55"
+         style="font-size:1.05rem; line-height:1.75; color:var(--plum);">
+        The treats Lakeside keeps coming back for — one bite and you'll understand why.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+      <!-- ── 1. Mangonada ── -->
+      <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
+           style="box-shadow:0 8px 40px rgba(255,69,102,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden flex items-center justify-center"
+             style="background:linear-gradient(135deg,#FF9A6C 0%,#FF4566 100%);">
+          <div class="absolute w-44 h-44 rounded-full -top-10 -right-10 opacity-20" style="background:white;"></div>
+          <div class="absolute w-28 h-28 rounded-full -bottom-6 -left-6 opacity-15" style="background:white;"></div>
+          <span style="font-size:5rem; position:relative; z-index:1;">🥭</span>
+          <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
+                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">#1 Bestseller</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Mangonada</h3>
+          <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
+            Fresh mango sorbet layered with chamoy, tajín, and real mango chunks. The undisputed crowd favorite.
+          </p>
+          <span class="stars text-base">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- ── 2. Dorilocos ── -->
+      <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
+           style="box-shadow:0 8px 40px rgba(255,107,53,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden flex items-center justify-center"
+             style="background:linear-gradient(135deg,#FF6B35 0%,#D93B00 100%);">
+          <div class="absolute w-40 h-40 rounded-full -top-8 -right-8 opacity-15" style="background:white;"></div>
+          <div class="absolute w-24 h-24 rounded-full -bottom-4 -left-4 opacity-12" style="background:white;"></div>
+          <span style="font-size:5rem; position:relative; z-index:1;">🌮</span>
+          <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
+                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">Street Fave</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Dorilocos</h3>
+          <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
+            Crunchy Doritos loaded with cucumber, jicama, lime, chamoy, hot sauce &amp; gummy bears. Pure explosion.
+          </p>
+          <span class="stars text-base">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- ── 3. Raspado ── -->
+      <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
+           style="box-shadow:0 8px 40px rgba(0,201,200,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden flex items-center justify-center"
+             style="background:linear-gradient(135deg,#00D4D4 0%,#0089A8 100%);">
+          <div class="absolute w-44 h-44 rounded-full -top-10 -right-10 opacity-18" style="background:white;"></div>
+          <div class="absolute w-28 h-28 rounded-full -bottom-6 -left-6 opacity-12" style="background:white;"></div>
+          <span style="font-size:5rem; position:relative; z-index:1;">🧊</span>
+          <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
+                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">Summer Hit</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Raspado</h3>
+          <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
+            Mexican shaved ice soaked in tamarind, mango, or strawberry syrup. Add chamoy for extra punch.
+          </p>
+          <span class="stars text-base">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- ── 4. Paleta de Fresa ── -->
+      <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
+           style="box-shadow:0 8px 40px rgba(251,113,133,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden flex items-center justify-center"
+             style="background:linear-gradient(135deg,#FF85A1 0%,#E8407F 100%);">
+          <div class="absolute w-40 h-40 rounded-full -top-8 -right-8 opacity-18" style="background:white;"></div>
+          <div class="absolute w-28 h-28 rounded-full -bottom-4 -left-4 opacity-12" style="background:white;"></div>
+          <span style="font-size:5rem; position:relative; z-index:1;">🍓</span>
+          <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
+                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">Kids' Fave</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Paleta de Fresa</h3>
+          <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
+            Creamy strawberry popsicle made with real fruit. Finished with tajín for a sweet-spicy kick.
+          </p>
+          <span class="stars text-base">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- ── 5. Lucas Muecas ── -->
+      <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
+           style="box-shadow:0 8px 40px rgba(173,236,50,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden flex items-center justify-center"
+             style="background:linear-gradient(135deg,#C8F04A 0%,#78C800 100%);">
+          <div class="absolute w-44 h-44 rounded-full -top-10 -right-10 opacity-18" style="background:white;"></div>
+          <div class="absolute w-28 h-28 rounded-full -bottom-6 -left-6 opacity-12" style="background:white;"></div>
+          <span style="font-size:5rem; position:relative; z-index:1;">🍭</span>
+          <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700"
+                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px); color:white;">Classic</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Lucas Muecas</h3>
+          <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
+            The iconic Mexican candy — a lollipop dipped in tangy, spicy powder. Pure nostalgia in every lick.
+          </p>
+          <span class="stars text-base">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- ── 6. Vero Mango ── -->
+      <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
+           style="box-shadow:0 8px 40px rgba(255,209,47,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden flex items-center justify-center"
+             style="background:linear-gradient(135deg,#FFD12F 0%,#FF8C00 100%);">
+          <div class="absolute w-40 h-40 rounded-full -top-8 -right-8 opacity-18" style="background:white;"></div>
+          <div class="absolute w-28 h-28 rounded-full -bottom-4 -left-4 opacity-12" style="background:white;"></div>
+          <span style="font-size:5rem; position:relative; z-index:1;">🍡</span>
+          <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
+                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">Spicy &amp; Sweet</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Vero Mango</h3>
+          <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
+            Mango lollipop coated in chili powder. The perfect balance of sweet, sour &amp; spicy that keeps you coming back.
+          </p>
+          <span class="stars text-base">★★★★★</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footnote about images -->
+    <p class="text-center font-body text-sm mt-10 opacity-40" style="color:var(--plum);">
+      Ask about our full selection in store — we carry much more than what's listed here!
+    </p>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║  REVIEWS + SOCIAL                                    ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<section id="reviews" style="background:var(--plum);" class="py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <span class="chip mb-4" style="background:rgba(255,255,255,0.1); color:var(--lime);">
+        What People Say
+      </span>
+      <h2 class="font-display font-700 mt-4 text-white"
+          style="font-size:clamp(2.4rem,5vw,3.8rem); letter-spacing:-0.03em; line-height:1.05;">
+        Lakeside Loves Us
+      </h2>
+    </div>
+
+    <!-- Overall rating -->
+    <div class="flex justify-center mb-14 reveal">
+      <div class="text-center px-12 py-8 rounded-3xl"
+           style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);">
+        <div class="font-display font-700 text-white" style="font-size:5rem; line-height:1;">4.8</div>
+        <div class="stars text-2xl mt-1">★★★★★</div>
+        <div class="font-body text-sm mt-2 opacity-40 text-white">Based on Google Reviews</div>
+      </div>
+    </div>
+
+    <!-- Review cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+
+      <div class="review-card p-7 rounded-2xl reveal"
+           style="background:rgba(255,255,255,0.065); border:1px solid rgba(255,255,255,0.1);">
+        <div class="stars mb-3">★★★★★</div>
+        <p class="font-body text-sm text-white mb-6 opacity-80" style="line-height:1.75;">
+          "Best mangonada in all of Lakeside! The chamoy is perfectly tangy and the mango is always so fresh. My whole family makes the trip every weekend."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-700 text-white flex-shrink-0"
+               style="background:var(--coral);">M</div>
+          <div>
+            <div class="font-display font-600 text-white text-sm">Maria G.</div>
+            <div class="font-body text-xs text-white opacity-35">Lakeside, CA · Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card p-7 rounded-2xl reveal"
+           style="background:rgba(255,255,255,0.065); border:1px solid rgba(255,255,255,0.1);">
+        <div class="stars mb-3">★★★★★</div>
+        <p class="font-body text-sm text-white mb-6 opacity-80" style="line-height:1.75;">
+          "Incredible Mexican candy selection — stuff you just can't find anywhere else around here. The Dorilocos are honestly unreal. Kids go crazy every time."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-700 text-white flex-shrink-0"
+               style="background:var(--teal);">J</div>
+          <div>
+            <div class="font-display font-600 text-white text-sm">Jose R.</div>
+            <div class="font-body text-xs text-white opacity-35">El Cajon, CA · Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card p-7 rounded-2xl reveal"
+           style="background:rgba(255,255,255,0.065); border:1px solid rgba(255,255,255,0.1);">
+        <div class="stars mb-3">★★★★★</div>
+        <p class="font-body text-sm text-white mb-6 opacity-80" style="line-height:1.75;">
+          "I stock my ice cream truck from California Ice Cream and Leo always comes through — great prices, super fresh product, and always ready on time. Highly recommend!"
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-700 flex-shrink-0"
+               style="background:var(--sun); color:var(--plum);">C</div>
+          <div>
+            <div class="font-display font-600 text-white text-sm">Carlos M.</div>
+            <div class="font-body text-xs text-white opacity-35">San Diego, CA · Google Review</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Social media buttons -->
+    <div class="text-center reveal">
+      <p class="font-display font-600 text-sm uppercase tracking-widest mb-6 opacity-40 text-white">Find Us Online</p>
+      <div class="flex justify-center gap-4 flex-wrap">
+
+        <a href="#" class="btn-social"
+           style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+                  box-shadow:0 6px 20px rgba(220,39,67,0.35);"
+           aria-label="Instagram">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Instagram
+        </a>
+
+        <a href="#" class="btn-social"
+           style="background:#1877F2; box-shadow:0 6px 20px rgba(24,119,242,0.35);"
+           aria-label="Facebook">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Facebook
+        </a>
+
+        <a href="https://www.google.com/maps/search/California+Ice+Cream+Lakeside+CA" target="_blank" rel="noopener"
+           class="btn-social"
+           style="background:#4285F4; box-shadow:0 6px 20px rgba(66,133,244,0.35);"
+           aria-label="Google Maps">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 0C7.802 0 4 3.403 4 7.602 4 11.8 7.469 16.812 12 24c4.531-7.188 8-12.2 8-16.398C20 3.403 16.199 0 12 0zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
+          </svg>
+          Google Maps
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║  CONTACT / BULK ORDERS FORM                          ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<section id="contact" class="py-28 px-6" style="background:var(--cream);">
+  <div class="max-w-3xl mx-auto">
+
+    <div class="text-center mb-12 reveal">
+      <span class="chip mb-4" style="background:rgba(255,69,102,0.1); color:var(--coral);">
+        Wholesale &amp; Bulk
+      </span>
+      <h2 class="font-display font-700 mt-4"
+          style="font-size:clamp(2.4rem,5vw,3.8rem); color:var(--plum); letter-spacing:-0.03em; line-height:1.05;">
+        Bulk Orders
+      </h2>
+      <p class="font-body font-400 mt-4 max-w-md mx-auto opacity-55"
+         style="font-size:1.05rem; line-height:1.75; color:var(--plum);">
+        Ice cream truck drivers, shops &amp; event planners — we've got you covered. Fill out the form and Leo will get back to you personally.
+      </p>
+    </div>
+
+    <form id="contact-form" class="space-y-5 reveal" onsubmit="handleSubmit(event)" novalidate>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Your Name *</label>
+          <input type="text" required placeholder="John Doe" class="field">
+        </div>
+        <div>
+          <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Business Name</label>
+          <input type="text" placeholder="Your Shop / Truck Name" class="field">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Email *</label>
+          <input type="email" required placeholder="you@example.com" class="field">
+        </div>
+        <div>
+          <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Phone Number</label>
+          <input type="tel" placeholder="(619) 555-0000" class="field">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Order Type *</label>
+          <select required class="field" style="appearance:none; cursor:pointer;">
+            <option value="" disabled selected>Select one…</option>
+            <option>Ice Cream / Paletas</option>
+            <option>Mexican Candy</option>
+            <option>Mixed Order</option>
+            <option>Event / Party Catering</option>
+            <option>Ongoing / Weekly Supply</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Estimated Quantity</label>
+          <input type="text" placeholder="e.g. 200 paletas, 10 cases…" class="field">
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-display font-600 text-sm mb-2" style="color:var(--plum);">Message / Details *</label>
+        <textarea required rows="5" placeholder="Tell us what you need, when you need it, and any special requests…"
+                  class="field resize-none"></textarea>
+      </div>
+
+      <button type="submit" id="submit-btn" class="btn-submit">
+        Send Bulk Order Request 🍦
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║  FOOTER                                              ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<footer class="py-12 px-6" style="background:var(--plum);">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 pb-10"
+         style="border-bottom:1px solid rgba(255,255,255,0.08);">
+
+      <!-- Brand -->
+      <div>
+        <div class="font-display font-700 text-2xl text-white mb-2" style="letter-spacing:-0.01em;">
+          <span style="color:var(--coral);">California</span> Ice Cream
+        </div>
+        <p class="font-body text-sm" style="color:rgba(255,255,255,0.45); line-height:1.65;">
+          Your go-to spot for ice cream, paletas, and authentic Mexican candy in Lakeside, CA.
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <div class="md:text-center">
+        <div class="font-display font-600 text-sm uppercase tracking-widest mb-4" style="color:rgba(255,255,255,0.35);">Navigate</div>
+        <div class="flex flex-col gap-2">
+          <a href="#bestsellers" class="font-body text-sm text-white opacity-50 hover:opacity-90 transition-opacity">Our Favorites</a>
+          <a href="#reviews"     class="font-body text-sm text-white opacity-50 hover:opacity-90 transition-opacity">Reviews</a>
+          <a href="#contact"     class="font-body text-sm text-white opacity-50 hover:opacity-90 transition-opacity">Bulk Orders</a>
+        </div>
+      </div>
+
+      <!-- Contact info -->
+      <div class="md:text-right">
+        <div class="font-display font-600 text-sm uppercase tracking-widest mb-4" style="color:rgba(255,255,255,0.35);">Find Us</div>
+        <div class="font-body text-sm space-y-1" style="color:rgba(255,255,255,0.5);">
+          <div>📍 Lakeside, California</div>
+          <div>🕐 Open Daily</div>
+          <div class="mt-3">
+            <a href="#contact" class="font-display font-600 text-sm" style="color:var(--coral);">
+              Request a Bulk Order →
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="font-body text-xs" style="color:rgba(255,255,255,0.22);">
+        © 2024 California Ice Cream · Lakeside, CA. All rights reserved.
+      </div>
+      <div class="flex items-center gap-2">
+        <span style="color:var(--coral); font-size:1rem;">🍦</span>
+        <span class="font-display font-600 text-xs" style="color:rgba(255,255,255,0.22);">Made with love in Lakeside</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║  SCRIPTS                                             ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<script>
+/* ── Mobile nav ── */
+function toggleMenu() {
+  const m = document.getElementById('mobile-menu');
+  m.classList.toggle('open');
+}
+
+/* ── Navbar scroll effect ── */
+(function() {
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('stuck', window.scrollY > 30);
+  }, { passive: true });
+})();
+
+/* ── Scroll reveal ── */
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { io.observe(el); });
+})();
+
+/* ── Form submit ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = '✓ Sent! Leo will be in touch soon.';
+  btn.classList.add('success');
+  btn.disabled = true;
+  setTimeout(function() {
+    btn.textContent = 'Send Bulk Order Request 🍦';
+    btn.classList.remove('success');
+    btn.disabled = false;
+    e.target.reset();
+  }, 5000);
+}
+
+/* ════════════════════════════════════════════════════════
+   THREE.JS  —  GRADIENT WAVE (Hero Background)
+   Colors: #ffffff → #fb7185 → #e879f9 → #a3e635 → #ffffff
+   Implements the GradientWave component from 21st.dev
+   ════════════════════════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('gradient-canvas');
+  const heroSection = canvas.parentElement;
+
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: false, antialias: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+  const geo = new THREE.PlaneGeometry(2, 2);
+
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0.0 },
+      uRes:  { value: new THREE.Vector2(1, 1) },
+    },
+
+    vertexShader: /* glsl */`
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = vec4(position.xy, 0.0, 1.0);
+      }
+    `,
+
+    fragmentShader: /* glsl */`
+      precision highp float;
+      uniform float uTime;
+      uniform vec2  uRes;
+      varying vec2  vUv;
+
+      /* ── Value noise ── */
+      float hash2(vec2 p) {
+        p = fract(p * vec2(127.1, 311.7));
+        p += dot(p, p + 17.5);
+        return fract(p.x * p.y);
+      }
+      float vnoise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
+        f = f * f * (3.0 - 2.0 * f);
+        float a = hash2(i);
+        float b = hash2(i + vec2(1.0, 0.0));
+        float c = hash2(i + vec2(0.0, 1.0));
+        float d = hash2(i + vec2(1.0, 1.0));
+        return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+      }
+
+      /* ── Fractal Brownian Motion ── */
+      float fbm(vec2 p) {
+        float v = 0.0, a = 0.5;
+        for (int i = 0; i < 6; i++) {
+          v += a * vnoise(p);
+          p  = p * 2.1 + vec2(1.7, 9.2);
+          a *= 0.5;
+        }
+        return v;
+      }
+
+      /* ── 5-stop gradient ──
+         t ∈ [0,1] maps:
+         0.00 → #ffffff (white)
+         0.25 → #fb7185 (rose)
+         0.50 → #e879f9 (fuchsia)
+         0.75 → #a3e635 (lime)
+         1.00 → #ffffff (white)
+      */
+      vec3 gradient(float t) {
+        t = clamp(t, 0.0, 1.0);
+        float s = t * 4.0;
+        float f = fract(s);
+        f = f * f * (3.0 - 2.0 * f); /* smoothstep */
+
+        vec3 c0 = vec3(1.000, 1.000, 1.000);
+        vec3 c1 = vec3(0.984, 0.443, 0.522);
+        vec3 c2 = vec3(0.910, 0.475, 0.976);
+        vec3 c3 = vec3(0.639, 0.902, 0.208);
+        vec3 c4 = vec3(1.000, 1.000, 1.000);
+
+        vec3 col = c0;
+        if      (s < 1.0) col = mix(c0, c1, f);
+        else if (s < 2.0) col = mix(c1, c2, f);
+        else if (s < 3.0) col = mix(c2, c3, f);
+        else               col = mix(c3, c4, f);
+        return col;
+      }
+
+      void main() {
+        vec2 uv = vUv;
+
+        /* noiseFlow = 2 → moderate speed */
+        float speed = uTime * 0.12;
+
+        /* Two noise layers at different frequencies */
+        float n1 = fbm(vec2(uv.x * 2.2 + speed * 0.6,  uv.y * 2.0 + speed * 0.3));
+        float n2 = fbm(vec2(uv.x * 3.8 - speed * 0.45, uv.y * 3.5 + speed * 0.5));
+        float n  = n1 * 0.65 + n2 * 0.35;
+
+        /* incline = 0.2 → slight diagonal tilt */
+        float incline = uv.x * 0.20;
+
+        /* noiseAmp = 100px on ~900px screen ≈ 0.22 in UV */
+        float amp = 0.22;
+
+        float pos = uv.y + incline + (n - 0.5) * amp * 2.0;
+
+        /* Slow whole-gradient drift */
+        pos += sin(speed * 0.25) * 0.06;
+
+        vec3 color = gradient(pos);
+
+        /* Subtle vignette (shadowPower ≈ 4) — edges slightly darker */
+        float ex = uv.x * (1.0 - uv.x);
+        float ey = uv.y * (1.0 - uv.y);
+        float vig = clamp(ex * ey * 12.0, 0.0, 1.0);
+        vig = pow(vig, 0.35);
+        color = mix(color * 0.80, color, vig);
+
+        /* Slight gamma lift so whites are bright */
+        color = pow(color, vec3(0.92));
+
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `,
+    depthTest: false,
+    depthWrite: false,
+  });
+
+  scene.add(new THREE.Mesh(geo, mat));
+
+  function resize() {
+    const w = heroSection.offsetWidth;
+    const h = heroSection.offsetHeight;
+    renderer.setSize(w, h, false);
+    mat.uniforms.uRes.value.set(w, h);
+  }
+  resize();
+
+  let ro;
+  if (typeof ResizeObserver !== 'undefined') {
+    ro = new ResizeObserver(resize);
+    ro.observe(heroSection);
+  } else {
+    window.addEventListener('resize', resize, { passive: true });
+  }
+
+  const t0 = performance.now();
+  let rafId;
+
+  function animate(now) {
+    rafId = requestAnimationFrame(animate);
+    mat.uniforms.uTime.value = (now - t0) * 0.001;
+    renderer.render(scene, camera);
+  }
+  rafId = requestAnimationFrame(animate);
+
+  /* Pause animation when hero is off-screen (performance) */
+  const pauseIO = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        if (!rafId) rafId = requestAnimationFrame(animate);
+      } else {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    });
+  }, { threshold: 0 });
+  pauseIO.observe(heroSection);
+
+})();
+</script>
+
+</body>
+</html>

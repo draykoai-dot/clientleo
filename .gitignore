@@ -1,0 +1,12 @@
+node_modules/
+temporary screenshots/
+
+# Raw .htm files (saved web pages, not actual assets)
+Cheetos_PNG.htm
+Lucas_PNG.htm
+PopsicleBrand_PNG.htm
+Takis_PNG.htm
+Lay's_PNG.svg
+
+# Client document — do not commit to public repo
+Leo_Client_Contract.pdf
