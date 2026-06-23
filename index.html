@@ -6,6 +6,7 @@
   <title>California Ice Cream — Lakeside, CA</title>
   <meta name="description" content="Ice cream, paletas & the best Mexican candy in Lakeside, California. Bulk orders welcome for ice cream trucks and shops.">
 
+  <link rel="icon" href="ice cream logo.jpeg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
@@ -84,9 +85,9 @@
     .marquee-track {
       display: flex;
       align-items: center;
-      gap: 80px;
+      gap: 48px;
       width: max-content;
-      animation: marquee 22s linear infinite;
+      animation: marquee 30s linear infinite;
     }
     @keyframes marquee {
       from { transform: translateX(0); }
@@ -264,7 +265,9 @@
      ╚══════════════════════════════════════════════════════╝ -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
   <div class="max-w-6xl mx-auto flex items-center justify-between">
-    <a href="#" class="font-display font-700 text-2xl" style="color:var(--plum); letter-spacing:-0.01em;">
+    <a href="#" class="flex items-center gap-3 font-display font-700 text-2xl" style="color:var(--plum); letter-spacing:-0.01em;">
+      <img src="ice cream logo.jpeg" alt="California Ice Cream logo"
+           style="height:44px; width:44px; object-fit:cover; border-radius:50%; flex-shrink:0;">
       <span style="color:var(--coral);">California</span> Ice Cream
     </a>
 
@@ -272,7 +275,7 @@
       <a href="#bestsellers" class="font-body font-600 text-sm hover:opacity-70 transition-opacity" style="color:var(--plum);">Our Favorites</a>
       <a href="#reviews"     class="font-body font-600 text-sm hover:opacity-70 transition-opacity" style="color:var(--plum);">Reviews</a>
       <a href="#contact"     class="font-body font-600 text-sm hover:opacity-70 transition-opacity" style="color:var(--plum);">Bulk Orders</a>
-      <a href="#contact" class="btn-primary px-6 py-2.5 text-sm">Contact Leo</a>
+      <a href="#contact" class="btn-primary px-6 py-2.5 text-sm">Contact Us</a>
     </div>
 
     <button id="hamburger" class="md:hidden p-2 rounded-lg" onclick="toggleMenu()"
@@ -289,7 +292,7 @@
     <a href="#bestsellers" onclick="toggleMenu()" class="font-body font-600 text-base" style="color:var(--plum);">Our Favorites</a>
     <a href="#reviews"     onclick="toggleMenu()" class="font-body font-600 text-base" style="color:var(--plum);">Reviews</a>
     <a href="#contact"     onclick="toggleMenu()" class="font-body font-600 text-base" style="color:var(--plum);">Bulk Orders</a>
-    <a href="#contact"     onclick="toggleMenu()" class="btn-primary px-6 py-2.5 text-sm self-start">Contact Leo</a>
+    <a href="#contact"     onclick="toggleMenu()" class="btn-primary px-6 py-2.5 text-sm self-start">Contact Us</a>
   </div>
 </nav>
 
@@ -305,39 +308,39 @@
   <!-- Noise texture grain -->
   <div class="noise"></div>
 
-  <!-- Floating decorative emojis -->
-  <span class="absolute top-[18%] left-[8%]  text-5xl float-a hidden lg:block select-none pointer-events-none z-10" aria-hidden="true">🍭</span>
-  <span class="absolute top-[28%] right-[7%] text-6xl float-b hidden lg:block select-none pointer-events-none z-10" aria-hidden="true">🍦</span>
-  <span class="absolute bottom-[22%] left-[6%] text-4xl float-b hidden lg:block select-none pointer-events-none z-10" aria-hidden="true">🌶️</span>
-  <span class="absolute bottom-[18%] right-[9%] text-5xl float-a hidden lg:block select-none pointer-events-none z-10" aria-hidden="true">🥭</span>
+  <!-- Hero product image -->
+  <img src="hero section image.png" alt="" aria-hidden="true"
+       style="position:absolute; bottom:-4%; left:50%; transform:translateX(-50%);
+              height:88%; width:auto; z-index:2; pointer-events:none; user-select:none;
+              mix-blend-mode:multiply; opacity:0.28; object-fit:contain;">
 
   <!-- Hero content -->
   <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
     <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 font-body font-600 text-sm"
-         style="background:rgba(255,255,255,0.55); backdrop-filter:blur(14px); border:1.5px solid rgba(255,255,255,0.75); color:var(--plum);">
+         style="background:rgba(30,0,64,0.06); border:1.5px solid rgba(30,0,64,0.1); color:var(--plum);">
       📍 Lakeside, California
     </div>
 
     <h1 class="font-display font-700 leading-[0.88] mb-7"
-        style="font-size:clamp(3.8rem, 10.5vw, 8.5rem); color:var(--plum); letter-spacing:-0.03em; mix-blend-mode:multiply;">
+        style="font-size:clamp(3.8rem, 10.5vw, 8.5rem); color:var(--plum); letter-spacing:-0.03em;">
       California<br>
       <span style="color:var(--coral);">Ice Cream</span>
     </h1>
 
     <p class="font-body font-400 mb-10 max-w-lg mx-auto"
        style="font-size:clamp(1rem,2.5vw,1.2rem); line-height:1.75; color:var(--plum); opacity:0.78;">
-      Ice cream, paletas &amp; the most authentic Mexican candy in Lakeside — all under one roof. Come taste the magic! 🍬
+      Wholesale ice cream, candy &amp; chips — open to the public 7 days / wk<br>10 – 6 pm
     </p>
 
     <div class="flex items-center justify-center gap-4 flex-wrap">
       <a href="#bestsellers" class="btn-primary px-9 py-4 text-base">See Our Menu</a>
-      <a href="#contact"     class="btn-ghost  px-9 py-4 text-base">Bulk Orders</a>
+      <a href="#contact" class="btn-ghost px-9 py-4 text-base">Bulk Orders</a>
     </div>
   </div>
 
   <!-- Scroll cue -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1"
-       style="color:var(--plum); opacity:0.45; animation:float-a 3s ease-in-out infinite;">
+       style="color:var(--plum); opacity:0.35; animation:float-a 3s ease-in-out infinite;">
     <span class="font-body text-xs font-600 uppercase tracking-widest">Scroll</span>
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
       <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -354,20 +357,36 @@
   <div class="marquee-track" style="gap:80px;">
 
     <!-- ══ SET 1 ══ -->
-    <img src="Doritos_PNG.png"   alt="Doritos"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="Lays_Logo.png"      alt="Lay's"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="EDY's_PNG.png"     alt="EDY's"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="Cheetos_Logo.png"  alt="Cheetos"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="Popsicle_Logo.png" alt="Popsicle"  style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="Takis_Logo.png"    alt="Takis"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="EDY's_PNG.png"       alt="EDY's"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Popsicle_Logo.png"   alt="Popsicle"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Takis_Logo.png"      alt="Takis"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="BombPop_Logo.png"    alt="Bomb Pop"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="BlueBunny_Logo.png"  alt="Blue Bunny" style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Lucas_Logo.png"      alt="Lucas"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
 
-    <!-- ══ SET 2 — exact duplicate for seamless loop ══ -->
-    <img src="Doritos_PNG.png"   alt="Doritos"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="Lays_Logo.png"     alt="Lay's"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="EDY's_PNG.png"     alt="EDY's"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="Cheetos_Logo.png"  alt="Cheetos"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="Popsicle_Logo.png" alt="Popsicle"  style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
-    <img src="Takis_Logo.png"    alt="Takis"     style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <!-- ══ SET 2 ══ -->
+    <img src="EDY's_PNG.png"       alt="EDY's"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Popsicle_Logo.png"   alt="Popsicle"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Takis_Logo.png"      alt="Takis"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="BombPop_Logo.png"    alt="Bomb Pop"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="BlueBunny_Logo.png"  alt="Blue Bunny" style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Lucas_Logo.png"      alt="Lucas"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+
+    <!-- ══ SET 3 ══ -->
+    <img src="EDY's_PNG.png"       alt="EDY's"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Popsicle_Logo.png"   alt="Popsicle"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Takis_Logo.png"      alt="Takis"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="BombPop_Logo.png"    alt="Bomb Pop"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="BlueBunny_Logo.png"  alt="Blue Bunny" style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Lucas_Logo.png"      alt="Lucas"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+
+    <!-- ══ SET 4 ══ -->
+    <img src="EDY's_PNG.png"       alt="EDY's"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Popsicle_Logo.png"   alt="Popsicle"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Takis_Logo.png"      alt="Takis"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="BombPop_Logo.png"    alt="Bomb Pop"   style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="BlueBunny_Logo.png"  alt="Blue Bunny" style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
+    <img src="Lucas_Logo.png"      alt="Lucas"      style="height:56px; width:auto; object-fit:contain; flex-shrink:0; display:block;">
 
   </div>
 </div>
@@ -398,121 +417,109 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
 
-      <!-- ── 1. Mangonada ── -->
+      <!-- ── 1. Blue Bunny Cones ── -->
       <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
-           style="box-shadow:0 8px 40px rgba(255,69,102,0.09),0 2px 8px rgba(30,0,64,0.05);">
-        <div class="relative h-52 overflow-hidden flex items-center justify-center"
-             style="background:linear-gradient(135deg,#FF9A6C 0%,#FF4566 100%);">
-          <div class="absolute w-44 h-44 rounded-full -top-10 -right-10 opacity-20" style="background:white;"></div>
-          <div class="absolute w-28 h-28 rounded-full -bottom-6 -left-6 opacity-15" style="background:white;"></div>
-          <span style="font-size:5rem; position:relative; z-index:1;">🥭</span>
+           style="box-shadow:0 8px 40px rgba(212,131,42,0.12),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden">
+          <img src="blue bunny ice cream.png" alt="Blue Bunny Cones"
+               style="width:100%; height:100%; object-fit:contain; object-position:center; background:#1a6fc4;">
           <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
-                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">#1 Bestseller</span>
+                style="background:rgba(0,0,0,0.32); backdrop-filter:blur(4px);">Variety Pack</span>
         </div>
         <div class="p-6">
-          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Mangonada</h3>
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Blue Bunny Cones</h3>
           <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
-            Fresh mango sorbet layered with chamoy, tajín, and real mango chunks. The undisputed crowd favorite.
+            Vanilla, caramel lovers &amp; nut fudge — three iconic cones in one variety pack. A crowd-pleaser every time.
           </p>
           <span class="stars text-base">★★★★★</span>
         </div>
       </div>
 
-      <!-- ── 2. Dorilocos ── -->
+      <!-- ── 2. Bomb Pop ── -->
       <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
-           style="box-shadow:0 8px 40px rgba(255,107,53,0.09),0 2px 8px rgba(30,0,64,0.05);">
-        <div class="relative h-52 overflow-hidden flex items-center justify-center"
-             style="background:linear-gradient(135deg,#FF6B35 0%,#D93B00 100%);">
-          <div class="absolute w-40 h-40 rounded-full -top-8 -right-8 opacity-15" style="background:white;"></div>
-          <div class="absolute w-24 h-24 rounded-full -bottom-4 -left-4 opacity-12" style="background:white;"></div>
-          <span style="font-size:5rem; position:relative; z-index:1;">🌮</span>
+           style="box-shadow:0 8px 40px rgba(232,57,42,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden">
+          <img src="bomb pop.jpg" alt="Bomb Pop"
+               style="width:100%; height:100%; object-fit:contain; object-position:center; background:#5bbfee;">
           <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
-                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">Street Fave</span>
+                style="background:rgba(0,0,0,0.32); backdrop-filter:blur(4px);">Summer Classic</span>
         </div>
         <div class="p-6">
-          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Dorilocos</h3>
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Bomb Pop</h3>
           <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
-            Crunchy Doritos loaded with cucumber, jicama, lime, chamoy, hot sauce &amp; gummy bears. Pure explosion.
+            The original rocket pop — Cherry, Lime &amp; Blue Raspberry in one legendary bar. An American summertime icon.
           </p>
           <span class="stars text-base">★★★★★</span>
         </div>
       </div>
 
-      <!-- ── 3. Raspado ── -->
+      <!-- ── 3. Popsicle ── -->
       <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
-           style="box-shadow:0 8px 40px rgba(0,201,200,0.09),0 2px 8px rgba(30,0,64,0.05);">
-        <div class="relative h-52 overflow-hidden flex items-center justify-center"
-             style="background:linear-gradient(135deg,#00D4D4 0%,#0089A8 100%);">
-          <div class="absolute w-44 h-44 rounded-full -top-10 -right-10 opacity-18" style="background:white;"></div>
-          <div class="absolute w-28 h-28 rounded-full -bottom-6 -left-6 opacity-12" style="background:white;"></div>
-          <span style="font-size:5rem; position:relative; z-index:1;">🧊</span>
+           style="box-shadow:0 8px 40px rgba(255,152,0,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden">
+          <img src="popsicle ice cream.avif" alt="Popsicle"
+               style="width:100%; height:100%; object-fit:contain; object-position:center; background:#FFD000;">
           <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
-                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">Summer Hit</span>
+                style="background:rgba(0,0,0,0.32); backdrop-filter:blur(4px);">18 Pack</span>
         </div>
         <div class="p-6">
-          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Raspado</h3>
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Popsicle</h3>
           <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
-            Mexican shaved ice soaked in tamarind, mango, or strawberry syrup. Add chamoy for extra punch.
+            Orange, Cherry &amp; Grape — the three classic flavors that never go out of style. Perfect for hot Lakeside afternoons.
           </p>
           <span class="stars text-base">★★★★★</span>
         </div>
       </div>
 
-      <!-- ── 4. Paleta de Fresa ── -->
+      <!-- ── 4. Mango Ice Bar ── -->
       <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
-           style="box-shadow:0 8px 40px rgba(251,113,133,0.09),0 2px 8px rgba(30,0,64,0.05);">
-        <div class="relative h-52 overflow-hidden flex items-center justify-center"
-             style="background:linear-gradient(135deg,#FF85A1 0%,#E8407F 100%);">
-          <div class="absolute w-40 h-40 rounded-full -top-8 -right-8 opacity-18" style="background:white;"></div>
-          <div class="absolute w-28 h-28 rounded-full -bottom-4 -left-4 opacity-12" style="background:white;"></div>
-          <span style="font-size:5rem; position:relative; z-index:1;">🍓</span>
+           style="box-shadow:0 8px 40px rgba(255,165,0,0.09),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden">
+          <img src="mango ice cream.png" alt="Mango Ice Bar"
+               style="width:100%; height:100%; object-fit:contain; object-position:center; background:#FFF3E0;">
           <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
-                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">Kids' Fave</span>
+                style="background:rgba(0,0,0,0.32); backdrop-filter:blur(4px);">Exotic Pick</span>
         </div>
         <div class="p-6">
-          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Paleta de Fresa</h3>
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Mango Ice Bar</h3>
           <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
-            Creamy strawberry popsicle made with real fruit. Finished with tajín for a sweet-spicy kick.
+            A mango-shaped premium frozen bar with intense real-fruit flavor. Looks incredible, tastes even better.
           </p>
           <span class="stars text-base">★★★★★</span>
         </div>
       </div>
 
-      <!-- ── 5. Lucas Muecas ── -->
+      <!-- ── 5. Peach Ice Bar ── -->
       <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
-           style="box-shadow:0 8px 40px rgba(173,236,50,0.09),0 2px 8px rgba(30,0,64,0.05);">
-        <div class="relative h-52 overflow-hidden flex items-center justify-center"
-             style="background:linear-gradient(135deg,#C8F04A 0%,#78C800 100%);">
-          <div class="absolute w-44 h-44 rounded-full -top-10 -right-10 opacity-18" style="background:white;"></div>
-          <div class="absolute w-28 h-28 rounded-full -bottom-6 -left-6 opacity-12" style="background:white;"></div>
-          <span style="font-size:5rem; position:relative; z-index:1;">🍭</span>
-          <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700"
-                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px); color:white;">Classic</span>
+           style="box-shadow:0 8px 40px rgba(255,183,176,0.12),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden">
+          <img src="peach ice cream.jpg" alt="Peach Ice Bar"
+               style="width:100%; height:100%; object-fit:contain; object-position:center; background:#FFF0ED;">
+          <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
+                style="background:rgba(0,0,0,0.32); backdrop-filter:blur(4px);">Unique Find</span>
         </div>
         <div class="p-6">
-          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Lucas Muecas</h3>
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Peach Ice Bar</h3>
           <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
-            The iconic Mexican candy — a lollipop dipped in tangy, spicy powder. Pure nostalgia in every lick.
+            A beautifully sculpted peach-shaped ice bar with a delicate, refreshing peach flavor. Sweet and one of a kind.
           </p>
           <span class="stars text-base">★★★★★</span>
         </div>
       </div>
 
-      <!-- ── 6. Vero Mango ── -->
+      <!-- ── 6. Grape Ice Bar ── -->
       <div class="product-card rounded-3xl overflow-hidden bg-white reveal"
-           style="box-shadow:0 8px 40px rgba(255,209,47,0.09),0 2px 8px rgba(30,0,64,0.05);">
-        <div class="relative h-52 overflow-hidden flex items-center justify-center"
-             style="background:linear-gradient(135deg,#FFD12F 0%,#FF8C00 100%);">
-          <div class="absolute w-40 h-40 rounded-full -top-8 -right-8 opacity-18" style="background:white;"></div>
-          <div class="absolute w-28 h-28 rounded-full -bottom-4 -left-4 opacity-12" style="background:white;"></div>
-          <span style="font-size:5rem; position:relative; z-index:1;">🍡</span>
+           style="box-shadow:0 8px 40px rgba(123,47,190,0.12),0 2px 8px rgba(30,0,64,0.05);">
+        <div class="relative h-52 overflow-hidden">
+          <img src="grape ice cream single.webp" alt="Grape Ice Bar"
+               style="width:100%; height:100%; object-fit:contain; object-position:center; background:#f5f0ff;">
           <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-display font-700 text-white"
-                style="background:rgba(0,0,0,0.22); backdrop-filter:blur(4px);">Spicy &amp; Sweet</span>
+                style="background:rgba(0,0,0,0.32); backdrop-filter:blur(4px);">Fan Fave</span>
         </div>
         <div class="p-6">
-          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Vero Mango</h3>
+          <h3 class="font-display font-700 text-xl mb-2" style="color:var(--plum);">Grape Ice Bar</h3>
           <p class="font-body text-sm opacity-60 mb-4" style="line-height:1.7; color:var(--plum);">
-            Mango lollipop coated in chili powder. The perfect balance of sweet, sour &amp; spicy that keeps you coming back.
+            Sculpted like a real bunch of grapes, this frozen treat packs bold grape flavor in every bite. A total showstopper.
           </p>
           <span class="stars text-base">★★★★★</span>
         </div>
@@ -561,14 +568,14 @@
            style="background:rgba(255,255,255,0.065); border:1px solid rgba(255,255,255,0.1);">
         <div class="stars mb-3">★★★★★</div>
         <p class="font-body text-sm text-white mb-6 opacity-80" style="line-height:1.75;">
-          "Best mangonada in all of Lakeside! The chamoy is perfectly tangy and the mango is always so fresh. My whole family makes the trip every weekend."
+          "Very polite and helpful. Large order for church Memorial Day picnic. Old fashioned ice cream cups complete with the wooden spoon. Remember the taste of the wooden spoon? Big hit with all the kids. Fed a group of 250!"
         </p>
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-700 text-white flex-shrink-0"
-               style="background:var(--coral);">M</div>
+               style="background:var(--coral);">J</div>
           <div>
-            <div class="font-display font-600 text-white text-sm">Maria G.</div>
-            <div class="font-body text-xs text-white opacity-35">Lakeside, CA · Google Review</div>
+            <div class="font-display font-600 text-white text-sm">James Towle</div>
+            <div class="font-body text-xs text-white opacity-35">Local Guide · Google Review</div>
           </div>
         </div>
       </div>
@@ -577,14 +584,14 @@
            style="background:rgba(255,255,255,0.065); border:1px solid rgba(255,255,255,0.1);">
         <div class="stars mb-3">★★★★★</div>
         <p class="font-body text-sm text-white mb-6 opacity-80" style="line-height:1.75;">
-          "Incredible Mexican candy selection — stuff you just can't find anywhere else around here. The Dorilocos are honestly unreal. Kids go crazy every time."
+          "A storefront ice cream truck. First visit and I will definitely be coming back. They have a great variety and it is a lot of fun. The guy working the counter was really nice and helpful!"
         </p>
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-700 text-white flex-shrink-0"
                style="background:var(--teal);">J</div>
           <div>
-            <div class="font-display font-600 text-white text-sm">Jose R.</div>
-            <div class="font-body text-xs text-white opacity-35">El Cajon, CA · Google Review</div>
+            <div class="font-display font-600 text-white text-sm">Julia Cerwin</div>
+            <div class="font-body text-xs text-white opacity-35">Local Guide · Google Review</div>
           </div>
         </div>
       </div>
@@ -593,14 +600,14 @@
            style="background:rgba(255,255,255,0.065); border:1px solid rgba(255,255,255,0.1);">
         <div class="stars mb-3">★★★★★</div>
         <p class="font-body text-sm text-white mb-6 opacity-80" style="line-height:1.75;">
-          "I stock my ice cream truck from California Ice Cream and Leo always comes through — great prices, super fresh product, and always ready on time. Highly recommend!"
+          "My son and I went shopping there today. We bought all the viral ice cream. I'm glad we came across this store on Facebook!"
         </p>
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-700 flex-shrink-0"
-               style="background:var(--sun); color:var(--plum);">C</div>
+               style="background:var(--sun); color:var(--plum);">A</div>
           <div>
-            <div class="font-display font-600 text-white text-sm">Carlos M.</div>
-            <div class="font-body text-xs text-white opacity-35">San Diego, CA · Google Review</div>
+            <div class="font-display font-600 text-white text-sm">Angela Brown</div>
+            <div class="font-body text-xs text-white opacity-35">Google Review</div>
           </div>
         </div>
       </div>
@@ -612,7 +619,7 @@
       <p class="font-display font-600 text-sm uppercase tracking-widest mb-6 opacity-40 text-white">Find Us Online</p>
       <div class="flex justify-center gap-4 flex-wrap">
 
-        <a href="#" class="btn-social"
+        <a href="https://www.instagram.com/california_ice_cream/?hl=en" target="_blank" rel="noopener" class="btn-social"
            style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
                   box-shadow:0 6px 20px rgba(220,39,67,0.35);"
            aria-label="Instagram">
@@ -622,13 +629,13 @@
           Instagram
         </a>
 
-        <a href="#" class="btn-social"
-           style="background:#1877F2; box-shadow:0 6px 20px rgba(24,119,242,0.35);"
-           aria-label="Facebook">
+        <a href="https://www.tiktok.com/@california.ice.cream" target="_blank" rel="noopener" class="btn-social"
+           style="background:#010101; box-shadow:0 6px 20px rgba(0,0,0,0.4);"
+           aria-label="TikTok">
           <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/>
           </svg>
-          Facebook
+          TikTok
         </a>
 
         <a href="https://www.google.com/maps/search/California+Ice+Cream+Lakeside+CA" target="_blank" rel="noopener"
@@ -773,11 +780,11 @@
 
     <div class="flex flex-col md:flex-row items-center justify-between gap-3">
       <div class="font-body text-xs" style="color:rgba(255,255,255,0.22);">
-        © 2024 California Ice Cream · Lakeside, CA. All rights reserved.
+        © 2026 California Ice Cream · Lakeside, CA. All rights reserved.
       </div>
       <div class="flex items-center gap-2">
-        <span style="color:var(--coral); font-size:1rem;">🍦</span>
-        <span class="font-display font-600 text-xs" style="color:rgba(255,255,255,0.22);">Made with love in Lakeside</span>
+        <img src="DRAYKO AI new LOGO.png" alt="Drayko AI" style="height:36px; width:auto; flex-shrink:0; display:block; mix-blend-mode:screen;">
+        <span class="font-display font-600 text-xs" style="color:rgba(255,255,255,0.22);">Powered by Drayko AI</span>
       </div>
     </div>
 
@@ -912,9 +919,9 @@ function handleSubmit(e) {
         f = f * f * (3.0 - 2.0 * f); /* smoothstep */
 
         vec3 c0 = vec3(1.000, 1.000, 1.000);
-        vec3 c1 = vec3(0.984, 0.443, 0.522);
-        vec3 c2 = vec3(0.910, 0.475, 0.976);
-        vec3 c3 = vec3(0.639, 0.902, 0.208);
+        vec3 c1 = vec3(1.000, 0.965, 0.898);
+        vec3 c2 = vec3(0.973, 0.922, 0.855);
+        vec3 c3 = vec3(1.000, 0.984, 0.949);
         vec3 c4 = vec3(1.000, 1.000, 1.000);
 
         vec3 col = c0;
